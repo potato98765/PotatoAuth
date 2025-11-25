@@ -12,8 +12,8 @@ Have you every wanted to automatic login on a minecraft server? Now with Potato 
 
 | Version | Status |
 |---------|--------|
-| 1.20 or below | **Untested**|
-| 1.21-1.21.5 | **Supported**|
+| 1.19.4 and below | **Unsupported**|
+| 1.20-1.21.5 | **Supported**|
 | 1.21.6-1.21.10| **Unsupported**|
 
 *Note: Support for more versions is planned for later and if you want to request a version to be added you can do it here*
