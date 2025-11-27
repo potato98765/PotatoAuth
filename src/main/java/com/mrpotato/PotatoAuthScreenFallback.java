@@ -5,34 +5,21 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
-import net.minecraft.client.gui.RotatingCubeMapRenderer;
-import net.minecraft.client.gui.CubeMapRenderer;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 
-public class PotatoAuthScreen extends Screen {
+public class PotatoAuthScreenFallback extends Screen {
     private final Screen parent;
     private TextFieldWidget passwordField;
     private TextFieldWidget serverField;
     private ButtonWidget autoLoginButton;
     private ButtonWidget serverModeButton;
-    
-    private static final Identifier PANORAMA_OVERLAY = Identifier.ofVanilla("textures/gui/title/background/panorama_overlay.png");
-    private static final CubeMapRenderer PANORAMA_CUBE_MAP = new CubeMapRenderer(
-        Identifier.ofVanilla("textures/gui/title/background/panorama")
-    );
-    private final RotatingCubeMapRenderer panoramaRenderer = new RotatingCubeMapRenderer(PANORAMA_CUBE_MAP);
-    private long backgroundFadeStart;
 
-    public PotatoAuthScreen(Screen parent) {
+    public PotatoAuthScreenFallback(Screen parent) {
         super(Text.literal("PotatoAuth Settings"));
         this.parent = parent;
     }
 
     @Override
     protected void init() {
-        this.backgroundFadeStart = System.currentTimeMillis();
-        
         int centerX = this.width / 2;
         int centerY = this.height / 2;
 
@@ -91,13 +78,7 @@ public class PotatoAuthScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.panoramaRenderer.render(context, this.width, this.height, 1.0F, delta);
-        
-        context.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        context.drawTexture(PANORAMA_OVERLAY, 0, 0, this.width, this.height, 0.0F, 0.0F, 16, 128, 16, 128);
-        
-        float fadeAlpha = MathHelper.clamp((float)(System.currentTimeMillis() - this.backgroundFadeStart) / 1000.0F, 0.0F, 1.0F);
-        context.fillGradient(0, 0, this.width, this.height, 0xFFFFFF, 0xFFFFFF, (int)(fadeAlpha * 64.0F) << 24 | 0xFFFFFF);
+        context.fillGradient(0, 0, this.width, this.height, 0xC0101010, 0xD0101010);
         
         super.render(context, mouseX, mouseY, delta);
         

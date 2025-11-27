@@ -1,6 +1,7 @@
 package com.mrpotato.mixin;
 
 import com.mrpotato.PotatoAuthScreen;
+import com.mrpotato.VersionHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -22,9 +23,9 @@ public abstract class MultiplayerScreenMixin extends Screen {
             Text.literal("PotatoAuth"),
             button -> {
                 if (this.client != null) {
-                    this.client.setScreen(new PotatoAuthScreen(this));
+                    this.client.setScreen(VersionHelper.createPotatoAuthScreen(this));
                 }
             }
-        ).dimensions(this.width / 2 + 4 + 76 + 80, this.height - 28, 74, 20).build());
+        ).dimensions(this.width / 2 + 4 + 76 + 80, this.height - 28, 72, 20).build());
     }
 }
